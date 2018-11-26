@@ -122,6 +122,29 @@ public class webStore extends JFrame implements ActionListener, ListSelectionLis
 
 	webStore() {
 
+
+        // --------------------------------------------------------- setup
+        URL arghURL, yohoURL, ahoyURL, onTheWayURL;
+        try {
+            // This syntax is older but works well:
+            arghURL = new URL("file:button-2.wav");
+            argh = Applet.newAudioClip(arghURL);
+
+            yohoURL = new URL("file:button-1.wav");
+            yoho = Applet.newAudioClip(yohoURL);
+
+            ahoyURL = new URL("file:button-3.wav");
+            ahoy = Applet.newAudioClip(ahoyURL);
+
+            onTheWayURL = new URL("file:on-the-way.wav");
+            onTheWay = Applet.newAudioClip(onTheWayURL);
+
+        } catch (MalformedURLException frack) {
+            frack.printStackTrace();
+        }
+
+
+
 		Font smallF = new Font("Helvetica", Font.PLAIN, 11);
 		Font smallPirateF = new Font("Black Sam's Gold", Font.PLAIN, 20);
 
@@ -502,8 +525,11 @@ public class webStore extends JFrame implements ActionListener, ListSelectionLis
 		if (e.getSource() == addWebAdBtn) {
 
             // TODO
+            yoho.play();
 			WebAd ad = new WebAd();
 			order.add(ad);
+
+
 
 
 			//food = new Pizza();
@@ -511,6 +537,7 @@ public class webStore extends JFrame implements ActionListener, ListSelectionLis
 
 		}  else if (e.getSource() == showStatsBtn) {
             if (order.size()>0){
+                ahoy.play();
                 // @leizheng
                 // create window for receipt panel and action buttons:
                 JLabel label1 = new JLabel("Low Price = $" + lowPrice);
@@ -529,7 +556,7 @@ public class webStore extends JFrame implements ActionListener, ListSelectionLis
                 jf.add(label2,BorderLayout.CENTER);
                 jf.add(label3,BorderLayout.SOUTH);
             }else{
-
+                argh.play();
                 JOptionPane.showMessageDialog(this, "Add WebAd prior to see Summary Statistics", "Attention", 0);
             }
 
@@ -539,6 +566,7 @@ public class webStore extends JFrame implements ActionListener, ListSelectionLis
             int i = orderTable.getSelectedRow();
 
             if (i > -1) {
+                ahoy.play();
 
                 WebAd ad1 = new WebAd();
                 ad1.paintComponent(getGraphics());
@@ -609,7 +637,7 @@ public class webStore extends JFrame implements ActionListener, ListSelectionLis
 
 
             } else {
-
+                argh.play();
                 JOptionPane.showMessageDialog(this, "Please select an item to view!", "Attention", 0);
             }
 
@@ -618,6 +646,7 @@ public class webStore extends JFrame implements ActionListener, ListSelectionLis
             int i = orderTable.getSelectedRow();
 
             if (i > -1) {
+                ahoy.play();
 
                 JLabel label1 = new JLabel("PIRATE SHIPS & BATH WATER");
                 JLabel label2 = new JLabel("Ad Price = $" + order.get(i).price);
@@ -656,7 +685,7 @@ public class webStore extends JFrame implements ActionListener, ListSelectionLis
 
 
             } else {
-
+                argh.play();
                 JOptionPane.showMessageDialog(this, "Please select an item to print!", "Attention", 0);
             }
 
@@ -672,10 +701,11 @@ public class webStore extends JFrame implements ActionListener, ListSelectionLis
 				int i = orderTable.getSelectedRow();
 
 				if (i > -1) {
+                    ahoy.play();
 					itemDetailsTitleLbl.setText("Item Special Request:");
 					order.remove(i);
 				} else {
-
+                    argh.play();
 					JOptionPane.showMessageDialog(this, "Please select an item to remove!", "Attention", 0); 
 				}
 			}
@@ -684,9 +714,10 @@ public class webStore extends JFrame implements ActionListener, ListSelectionLis
 
             int i = orderTable.getSelectedRow();
             if (data.getRowCount() > 0) {
+                ahoy.play();
                 removeAllItems();
             } else {
-
+                argh.play();
                 JOptionPane.showMessageDialog(this, "Please add items before remove all!", "Attention", 0);
             }
 
@@ -741,7 +772,7 @@ public class webStore extends JFrame implements ActionListener, ListSelectionLis
 
 				
 			} else {
-
+                argh.play();
 				JOptionPane.showMessageDialog(this, "Add items to your order prior to checking out, Matey.", "Attention", 0);
 
 			}
